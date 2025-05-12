@@ -34,19 +34,21 @@ test/
 └── bonus_function_overloads.test.ts
 ```
 
-✅ How to Run Tests 1. Install dependencies:
+✅ How to Run Tests
+
+1. Install dependencies:
 
 ```bash
 npm install
 ```
 
-    2.	Run all tests:
+2. Run all tests:
 
 ```zsh
 npm test
 ```
 
-    3.	Run tests for a specific section:
+3. Run tests for a specific section:
 
 ```zsh
 npx mocha -r ts-node/register test/section1_variables.test.ts
@@ -54,10 +56,10 @@ npx mocha -r ts-node/register test/section1_variables.test.ts
 
 ## ✨ Tips
 
-    •	Don’t worry if you make mistakes — the compiler and tests will guide you!
-    •	Try assigning wrong types on purpose to see what errors you get (it’s a great learning tool!)
-    •	If you’re stuck, compare what you’re writing to similar JavaScript patterns you already know.
-    •	Tackle the Bonus section if you’re feeling confident or curious.
+- Don’t worry if you make mistakes — the compiler and tests will guide you!
+- Try assigning wrong types on purpose to see what errors you get (it’s a great learning tool!)
+- If you’re stuck, compare what you’re writing to similar JavaScript patterns you already know.
+- Tackle the Bonus section if you’re feeling confident or curious.
 
 ---
 
