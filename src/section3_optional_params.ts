@@ -11,4 +11,3 @@
 // Your code here 👇
 
 // DO NOT EDIT BELOW (for test purposes only)
-export {};

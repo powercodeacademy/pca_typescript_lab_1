@@ -1,24 +1,40 @@
 import { expect } from "chai";
-import * as student from "../src/section2_functions";
+import * as ts from "typescript";
+import { readFileSync } from "fs";
+import { join } from "path";
+import vm from "vm";
 
 describe("Section 2 – Functions", () => {
+  let context: any = {};
+
+  before(() => {
+    const filePath = join(__dirname, "../src/section2_functions.ts");
+    const tsCode = readFileSync(filePath, "utf8");
+
+    // Compile TypeScript to JavaScript
+    const jsCode = ts.transpile(tsCode);
+
+    // Run in a sandbox
+    vm.createContext(context);
+    vm.runInContext(jsCode, context);
+  });
   it("should define a function 'greet' that returns a greeting string", () => {
-    const result = (student as any).greet("Ada");
+    const result = context.greet("Ada");
     expect(result).to.equal("Hello, Ada!");
   });
 
   it("should define a function 'double' that multiplies a number by 2", () => {
-    const result = (student as any).double(4);
+    const result = context.double(4);
     expect(result).to.equal(8);
   });
 
   it("should define a function 'isEven' that returns true for even numbers", () => {
-    const result = (student as any).isEven(10);
+    const result = context.isEven(10);
     expect(result).to.equal(true);
   });
 
   it("should return false for odd numbers in 'isEven'", () => {
-    const result = (student as any).isEven(7);
+    const result = context.isEven(7);
     expect(result).to.equal(false);
   });
 });

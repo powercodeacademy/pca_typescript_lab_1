@@ -1,21 +1,33 @@
 import { expect } from "chai";
+import * as ts from "typescript";
+import { readFileSync } from "fs";
+import { join } from "path";
+import vm from "vm";
 
-// Import the variables from student file
-import * as student from "../src/section1_variables";
+describe("Section 1 - Variables (No export required)", () => {
+  let context: any = {};
 
-describe("Section 1 – Variables", () => {
+  before(() => {
+    const filePath = join(__dirname, "../src/section1_variables.ts");
+    const tsCode = readFileSync(filePath, "utf8");
+
+    // Compile TypeScript to JavaScript
+    const jsCode = ts.transpile(tsCode);
+
+    // Run in a sandbox
+    vm.createContext(context);
+    vm.runInContext(jsCode, context);
+  });
+
   it("should define a variable named 'age' with a number value", () => {
-    const age = (student as any).age;
-    expect(age).to.be.a("number");
+    expect(context.age).to.be.a("number");
   });
 
   it("should define a variable named 'firstName' with a string value", () => {
-    const firstName = (student as any).firstName;
-    expect(firstName).to.be.a("string");
+    expect(context.firstName).to.be.a("string");
   });
 
   it("should define a variable named 'isEnrolled' with a boolean value", () => {
-    const isEnrolled = (student as any).isEnrolled;
-    expect(isEnrolled).to.be.a("boolean");
+    expect(context.isEnrolled).to.be.a("boolean");
   });
 });

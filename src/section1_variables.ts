@@ -1,5 +1,3 @@
-// section1_variables.ts
-// ======================
 // TASK: Declare 3 variables with explicit types:
 // - a number called `age`
 // - a string called `firstName`
@@ -10,8 +8,3 @@
 // BONUS: Try declaring a variable without an explicit type and see what type is inferred!
 
 // Your code here 👇
-
-
-
-// DO NOT EDIT BELOW (for test purposes only)
-export { }
