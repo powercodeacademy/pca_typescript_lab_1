@@ -12,3 +12,4 @@
 // Your code here 👇
 
 // DO NOT EDIT BELOW (for test purposes only)
+const testFunc = () => 5;
