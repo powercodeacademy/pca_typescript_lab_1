@@ -19,15 +19,18 @@ describe("Section 1 - Variables (No export required)", () => {
     vm.runInContext(jsCode, context);
   });
 
-  it("should define a variable named 'age' with a number value", () => {
+  it("should define a variable named 'age'", () => {
+    expect(context).to.have.property('age');
     expect(context.age).to.be.a("number");
   });
 
-  it("should define a variable named 'firstName' with a string value", () => {
+  it("should define a variable named 'firstName'", () => {
+    expect(context).to.have.property('firstName');
     expect(context.firstName).to.be.a("string");
   });
 
-  it("should define a variable named 'isEnrolled' with a boolean value", () => {
+  it("should define a variable named 'isEnrolled'", () => {
+    expect(context).to.have.property('isEnrolled');
     expect(context.isEnrolled).to.be.a("boolean");
   });
 });
