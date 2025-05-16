@@ -19,18 +19,52 @@ describe("Section 1 - Variables ", () => {
     vm.runInContext(jsCode, context);
   });
 
-  it("should define a variable named 'age'", () => {
-    expect(context).to.have.property('age');
-    expect(context.age).to.be.a("number");
-  });
+  function expectVariable(name: string, type: string) {
+    it(`should define a variable named '${name}' of type '${type}'`, () => {
+      expect(context).to.have.property(name);
+      expect(typeof context[name]).to.equal(type);
+    });
+  }
 
-  it("should define a variable named 'firstName'", () => {
-    expect(context).to.have.property('firstName');
-    expect(context.firstName).to.be.a("string");
-  });
+  function expectExplicitTypeAnnotation(varName: string, typeName: string) {
+    it(`should declare '${varName}' variable with an explicit type annotation of '${typeName}'`, () => {
+      const filePath = join(__dirname, "../src/section1_variables.ts");
+      const tsCode = readFileSync(filePath, "utf8");
+      const sourceFile = ts.createSourceFile(
+        filePath,
+        tsCode,
+        ts.ScriptTarget.Latest,
+        true
+      );
 
-  it("should define a variable named 'isEnrolled'", () => {
-    expect(context).to.have.property('isEnrolled');
-    expect(context.isEnrolled).to.be.a("boolean");
-  });
+      let found = false;
+
+      function checkNode(node: ts.Node) {
+        if (
+          ts.isVariableDeclaration(node) &&
+          node.name.getText() === varName &&
+          node.type &&
+          node.type.getText() === typeName
+        ) {
+          found = true;
+        }
+        ts.forEachChild(node, checkNode);
+      }
+
+      checkNode(sourceFile);
+
+      expect(
+        found,
+        `${varName} variable must have an explicit type annotation of '${typeName}'`
+      ).to.be.true;
+    });
+  }
+
+  expectVariable("age", "number");
+  expectVariable("firstName", "string");
+  expectVariable("isEnrolled", "boolean");
+
+  expectExplicitTypeAnnotation("age", "number");
+  expectExplicitTypeAnnotation("firstName", "string");
+  expectExplicitTypeAnnotation("isEnrolled", "boolean");
 });
