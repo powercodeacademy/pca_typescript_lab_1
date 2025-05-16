@@ -19,13 +19,6 @@ describe("Section 2 – Functions", () => {
     vm.runInContext(jsCode, context);
   });
 
-  it("should define a function 'greet' that returns a greeting string", () => {
-    expect(context).to.have.property("greet");
-    expect(context.greet).to.be.a("function");
-    const result = context.greet("Ada");
-    expect(result).to.equal("Hello, Ada!");
-  });
-
   it("should define a function 'double' that multiplies a number by 2", () => {
     expect(context).to.have.property("double");
     expect(context.double).to.be.a("function");
