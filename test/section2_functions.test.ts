@@ -24,17 +24,16 @@ describe("Section 2 – Functions", () => {
     expect(context.double).to.be.a("function");
     const result = context.double(4);
     expect(result).to.equal(8);
+  });
+  it("should define a function 'isEven' that returns true for even numbers", () => {
+    expect(context).to.have.property("isEven");
+    expect(context.isEven).to.be.a("function");
+    const result = context.isEven(10);
+    expect(result).to.equal(true);
+  });
 
-    it("should define a function 'isEven' that returns true for even numbers", () => {
-      expect(context).to.have.property("isEven");
-      expect(context.isEven).to.be.a("function");
-      const result = context.isEven(10);
-      expect(result).to.equal(true);
-    });
-
-    it("should return false for odd numbers in 'isEven'", () => {
-      const result = context.isEven(7);
-      expect(result).to.equal(false);
-    });
+  it("should return false for odd numbers in 'isEven'", () => {
+    const result = context.isEven(7);
+    expect(result).to.equal(false);
   });
 });
