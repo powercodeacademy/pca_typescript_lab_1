@@ -47,8 +47,8 @@ Then, assign values to each of them.
 - if not provided, use "Hello" as the default greeting
 
 _Example_:
-greet("Ada") ➞ "Hello, Ada!"
-greet("Grace", "Welcome") ➞ "Welcome, Grace!"
+`greet("Ada") ➞ "Hello, Ada!"`
+`greet("Grace", "Welcome") ➞ "Welcome, Grace!"`
 
 ### Section 4 (Bonus): Function Overloads
 
