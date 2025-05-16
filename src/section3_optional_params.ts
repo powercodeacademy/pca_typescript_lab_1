@@ -3,7 +3,7 @@
 // - takes one optional parameter: `greeting` (string)
 // - returns: "<greeting>, <name>!" if greeting is provided
 // - if not provided, use "Hello" as the default greeting
-//
+
 // Example:
 // greet("Ada") ➞ "Hello, Ada!"
 // greet("Grace", "Welcome") ➞ "Welcome, Grace!"

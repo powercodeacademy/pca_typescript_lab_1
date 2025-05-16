@@ -14,9 +14,54 @@ By completing this lab, you will be able to:
 
 ## 🛠️ What to Do
 
-    •	Open each file inside the src/ folder and complete the tasks
-    •	Use the provided Mocha + Chai tests (in the test/ folder) to check your work
-    •	Feel free to experiment and try extra variations!
+### Section 1: Variables
+
+**Task 1:** Declare 3 variables with explicit types:
+
+- a number called `age`
+- a string called `firstName`
+- a boolean called `isEnrolled`
+
+Then, assign values to each of them.
+
+**BONUS:** Try declaring a variable without an explicit type and see what type is inferred!
+
+### Section 2: Functions
+
+**TASK 1:** Write a function named `double` that:
+
+- takes a number and returns the number \* 2
+
+**TASK 2:** Write a function named `isEven` that:
+
+- takes a number and returns a boolean
+- returns true if the number is even, false otherwise
+
+### Section 3: Optional Parameters
+
+**TASK 1**: Write a function named `greet` that:
+
+- takes one required parameter: `name` (string)
+- takes one optional parameter: `greeting` (string)
+- returns: "<greeting>, <name>!" if greeting is provided
+- if not provided, use "Hello" as the default greeting
+
+_Example_:
+greet("Ada") ➞ "Hello, Ada!"
+greet("Grace", "Welcome") ➞ "Welcome, Grace!"
+
+### Section 4 (Bonus): Function Overloads
+
+**BONUS TASK**: Write a function called `formatId` that:
+- takes a parameter `id` that can be a string OR a number
+- if it's a string, return it in uppercase
+- if it's a number, return it as a string with leading zeros such that string is 5 characters (e.g. 42 → \"00042\")
+
+*Example*:
+`formatId(\"abc\") ➞ \"ABC\"`
+`formatId(42) ➞ \"00042\"`
+
+HINT: Use a union type (string | number) and type narrowing with `typeof`
 
 ## 🗂️ Lab Structure
 

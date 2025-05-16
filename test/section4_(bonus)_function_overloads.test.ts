@@ -28,8 +28,18 @@ describe("Section 4 (Bonus) – Function Overload-like Behavior", () => {
     expect(result).to.equal("ABC");
   });
 
-  it("should return a string with leading zeros when input is a number", () => {
+  it("should return a string with leading zeros when input is a number 42", () => {
     const result = context.formatId(42);
     expect(result).to.equal("00042");
+  });
+
+  it("should return a string with leading zeros when input is a number 12345", () => {
+    const result = context.formatId(12345);
+    expect(result).to.equal("12345");
+  });
+
+  it("should return a string with leading zeros when input is a number 923", () => {
+    const result = context.formatId(923);
+    expect(result).to.equal("00923");
   });
 });
