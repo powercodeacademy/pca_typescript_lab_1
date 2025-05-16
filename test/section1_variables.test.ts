@@ -3,7 +3,7 @@ import * as ts from "typescript";
 import { readFileSync } from "fs";
 import { join } from "path";
 import vm from "vm";
-import { expectExplicitTypeAnnotation } from "../explicit_type_annotation";
+import { expectVariableExplicitTypeAnnotation } from "../explicit_type_annotation";
 
 describe("Section 1 - Variables ", () => {
   let context: any = {};
@@ -31,7 +31,7 @@ describe("Section 1 - Variables ", () => {
   expectVariable("firstName", "string");
   expectVariable("isEnrolled", "boolean");
 
-  expectExplicitTypeAnnotation("age", "number");
-  expectExplicitTypeAnnotation("firstName", "string");
-  expectExplicitTypeAnnotation("isEnrolled", "boolean");
+  expectVariableExplicitTypeAnnotation("age", "number");
+  expectVariableExplicitTypeAnnotation("firstName", "string");
+  expectVariableExplicitTypeAnnotation("isEnrolled", "boolean");
 });
