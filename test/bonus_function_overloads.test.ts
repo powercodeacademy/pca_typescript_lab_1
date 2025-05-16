@@ -4,7 +4,7 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import vm from "vm";
 
-describe("Bonus – Function Overload-like Behavior", () => {
+describe("Section 4 (Bonus) – Function Overload-like Behavior", () => {
   let context: any = {};
 
   before(() => {

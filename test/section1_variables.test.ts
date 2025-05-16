@@ -4,7 +4,7 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import vm from "vm";
 
-describe("Section 1 - Variables (No export required)", () => {
+describe("Section 1 - Variables ", () => {
   let context: any = {};
 
   before(() => {
