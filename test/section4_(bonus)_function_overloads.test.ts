@@ -19,6 +19,8 @@ describe("Section 4 (Bonus) – Function Overload-like Behavior", () => {
     vm.runInContext(jsCode, context);
   });
   it("should return uppercase string when input is a string", () => {
+    expect(context).to.have.property("formatId");
+    expect(context.formatId).to.be.a("function");
     const result = context.formatId("abc");
     expect(result).to.equal("ABC");
   });

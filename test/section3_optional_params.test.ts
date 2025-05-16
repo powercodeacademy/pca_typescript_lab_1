@@ -19,6 +19,8 @@ describe("Section 3 – Optional Parameters", () => {
     vm.runInContext(jsCode, context);
   });
   it("should use the default greeting when only name is provided", () => {
+    expect(context).to.have.property("greet");
+    expect(context.greet).to.be.a("function");
     const result = context.greet("Ada");
     expect(result).to.equal("Hello, Ada!");
   });

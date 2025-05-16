@@ -18,31 +18,24 @@ describe("Section 2 – Functions", () => {
     vm.createContext(context);
     vm.runInContext(jsCode, context);
   });
-  it("should define a function named 'greet'", () => {
-    expect(context).to.have.property("greet");
-    expect(context.greet).to.be.a("function");
-  });
 
   it("should define a function 'greet' that returns a greeting string", () => {
+    expect(context).to.have.property("greet");
+    expect(context.greet).to.be.a("function");
     const result = context.greet("Ada");
     expect(result).to.equal("Hello, Ada!");
   });
 
-  it("should define a function named 'double'", () => {
+  it("should define a function 'double' that multiplies a number by 2", () => {
     expect(context).to.have.property("double");
     expect(context.double).to.be.a("function");
-  });
-
-  it("should define a function 'double' that multiplies a number by 2", () => {
-    const result = context.de(4);
+    const result = context.double(4);
     expect(result).to.equal(8);
-    it("should define a function named 'isEven'", () => {
-      expect(context).to.have.property("isEven");
-      expect(context.isEven).to.be.a("function");
-    });
 
     it("should define a function 'isEven' that returns true for even numbers", () => {
-      const result = context.isven(10);
+      expect(context).to.have.property("isEven");
+      expect(context.isEven).to.be.a("function");
+      const result = context.isEven(10);
       expect(result).to.equal(true);
     });
 
