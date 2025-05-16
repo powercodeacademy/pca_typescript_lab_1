@@ -1,7 +1,6 @@
 import { expect } from "chai";
 import * as ts from "typescript";
 import { readFileSync } from "fs";
-import { join } from "path";
 
 export function expectVariableExplicitTypeAnnotation(
   testFilePath: string,
