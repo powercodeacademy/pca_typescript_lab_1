@@ -8,7 +8,10 @@ describe("Section 4 (Bonus) – Function Overload-like Behavior", () => {
   let context: any = {};
 
   before(() => {
-    const filePath = join(__dirname, "../src/bonus_function_overloads.ts");
+    const filePath = join(
+      __dirname,
+      "../src/section4_(bonus)_function_overloads.ts"
+    );
     const tsCode = readFileSync(filePath, "utf8");
 
     // Compile TypeScript to JavaScript
