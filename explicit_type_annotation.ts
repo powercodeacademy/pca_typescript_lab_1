@@ -4,14 +4,14 @@ import { readFileSync } from "fs";
 import { join } from "path";
 
 export function expectVariableExplicitTypeAnnotation(
+  testFilePath: string,
   varName: string,
   typeName: string
 ) {
   it(`should declare '${varName}' variable with an explicit type annotation of '${typeName}'`, () => {
-    const filePath = join(__dirname, "../src/section1_variables.ts");
-    const tsCode = readFileSync(filePath, "utf8");
+    const tsCode = readFileSync(testFilePath, "utf8");
     const sourceFile = ts.createSourceFile(
-      filePath,
+      testFilePath,
       tsCode,
       ts.ScriptTarget.Latest,
       true
@@ -41,14 +41,14 @@ export function expectVariableExplicitTypeAnnotation(
 }
 
 export function expectFunctionReturnTypeAnnotation(
+  testFilePath: string,
   functionName: string,
   returnType: string
 ) {
   it(`should declare function '${functionName}' with an explicit return type annotation of '${returnType}'`, () => {
-    const filePath = join(__dirname, "../src/section1_functions.ts");
-    const tsCode = readFileSync(filePath, "utf8");
+    const tsCode = readFileSync(testFilePath, "utf8");
     const sourceFile = ts.createSourceFile(
-      filePath,
+      testFilePath,
       tsCode,
       ts.ScriptTarget.Latest,
       true
@@ -78,15 +78,15 @@ export function expectFunctionReturnTypeAnnotation(
 }
 
 export function expectFunctionParameterTypeAnnotation(
+  testFilePath: string,
   functionName: string,
   paramName: string,
   paramType: string
 ) {
   it(`should declare parameter '${paramName}' of function '${functionName}' with an explicit type annotation of '${paramType}'`, () => {
-    const filePath = join(__dirname, "../src/section1_functions.ts");
-    const tsCode = readFileSync(filePath, "utf8");
+    const tsCode = readFileSync(testFilePath, "utf8");
     const sourceFile = ts.createSourceFile(
-      filePath,
+      testFilePath,
       tsCode,
       ts.ScriptTarget.Latest,
       true

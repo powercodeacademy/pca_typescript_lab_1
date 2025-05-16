@@ -7,9 +7,9 @@ import { expectVariableExplicitTypeAnnotation } from "../explicit_type_annotatio
 
 describe("Section 1 - Variables ", () => {
   let context: any = {};
+  const filePath = join(__dirname, "../src/section1_variables.ts");
 
   before(() => {
-    const filePath = join(__dirname, "../src/section1_variables.ts");
     const tsCode = readFileSync(filePath, "utf8");
 
     // Compile TypeScript to JavaScript
@@ -31,7 +31,7 @@ describe("Section 1 - Variables ", () => {
   expectVariable("firstName", "string");
   expectVariable("isEnrolled", "boolean");
 
-  expectVariableExplicitTypeAnnotation("age", "number");
-  expectVariableExplicitTypeAnnotation("firstName", "string");
-  expectVariableExplicitTypeAnnotation("isEnrolled", "boolean");
+  expectVariableExplicitTypeAnnotation(filePath, "age", "number");
+  expectVariableExplicitTypeAnnotation(filePath, "firstName", "string");
+  expectVariableExplicitTypeAnnotation(filePath, "isEnrolled", "boolean");
 });
