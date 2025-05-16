@@ -6,11 +6,11 @@ This lab focuses on mastering how to use typed variables and typed functions in 
 ## 🏆 Learning Goals
 
 By completing this lab, you will be able to:
-• Declare variables with explicit types
-• Understand how type inference works in TypeScript
-• Write functions with typed parameters and return values
-• Use optional parameters and default values in functions
-• (Bonus) Use union types and type narrowing in functions
+- Declare variables with explicit types
+- Understand how type inference works in TypeScript
+- Write functions with typed parameters and return values
+- Use optional parameters and default values in functions
+- (Bonus) Use union types and type narrowing in functions
 
 ## 🛠️ What to Do
 
