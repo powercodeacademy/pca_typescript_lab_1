@@ -6,5 +6,3 @@
 // - returns true if the number is even, false otherwise
 
 // Your code here 👇
-
-// DO NOT EDIT BELOW (for test purposes only)

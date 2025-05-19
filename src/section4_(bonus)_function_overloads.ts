@@ -10,5 +10,3 @@
 // HINT: Use a union type (string | number) and type narrowing with `typeof`
 
 // Your code here 👇
-
-// DO NOT EDIT BELOW (for test purposes only)
