@@ -3,15 +3,19 @@ import * as ts from "typescript";
 import { readFileSync } from "fs";
 import { join } from "path";
 import vm from "vm";
+import {
+  expectFunctionReturnTypeAnnotation,
+  matchFunctionParameterTypeAnnotation,
+} from "../explicit_type_annotation";
 
-describe("Section 4 (Bonus) – Function Overload-like Behavior", () => {
+describe("Section 4 (Bonus) - Function Overload-like Behavior", () => {
   let context: any = {};
+  const filePath = join(
+    __dirname,
+    "../src/section4_(bonus)_function_overloads.ts"
+  );
 
   before(() => {
-    const filePath = join(
-      __dirname,
-      "../src/section4_(bonus)_function_overloads.ts"
-    );
     const tsCode = readFileSync(filePath, "utf8");
 
     // Compile TypeScript to JavaScript
@@ -42,4 +46,10 @@ describe("Section 4 (Bonus) – Function Overload-like Behavior", () => {
     const result = context.formatId(923);
     expect(result).to.equal("00923");
   });
+
+  expectFunctionReturnTypeAnnotation(filePath, "formatId", "string");
+
+  matchFunctionParameterTypeAnnotation(filePath, "formatId", [
+    "string | number",
+  ]);
 });
