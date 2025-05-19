@@ -47,6 +47,10 @@ describe("Section 2 - Functions", () => {
     expect(result).to.equal(true);
   });
 
+  expectFunctionReturnTypeAnnotation(filePath, "isEven", "boolean");
+
+  matchFunctionParameterTypeAnnotation(filePath, "isEven", ["number"]);
+
   it("should return false for odd numbers in 'isEven'", () => {
     const result = context.isEven(7);
     expect(result).to.equal(false);
