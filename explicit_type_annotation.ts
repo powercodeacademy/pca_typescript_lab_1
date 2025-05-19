@@ -44,6 +44,30 @@ export function expectFunctionReturnTypeAnnotation(
   functionName: string,
   returnType: string
 ) {
+  function checkNode(node: ts.Node): boolean {
+    if (ts.isFunctionDeclaration(node)) {
+      // Handle function declarations as before
+      return (
+        (node.name &&
+          node.name.getText() === functionName &&
+          node.type &&
+          node.type.getText() === returnType) ||
+        false
+      );
+    } else if (ts.isArrowFunction(node)) {
+      // For arrow functions, check the parent node
+      if (ts.isVariableDeclaration(node.parent)) {
+        const arrowFunctionName = node.parent.name.getText();
+        return (
+          (arrowFunctionName === functionName &&
+            node.type &&
+            node.type.getText() === returnType) ||
+          false
+        );
+      }
+    }
+    return ts.forEachChild(node, checkNode) || false;
+  }
   it(`should declare function '${functionName}' with an explicit return type annotation of '${returnType}'`, () => {
     const tsCode = readFileSync(testFilePath, "utf8");
     const sourceFile = ts.createSourceFile(
@@ -53,22 +77,7 @@ export function expectFunctionReturnTypeAnnotation(
       true
     );
 
-    let found = false;
-
-    function checkNode(node: ts.Node) {
-      if (
-        ts.isFunctionDeclaration(node) &&
-        node.name?.getText() === functionName &&
-        node.type &&
-        node.type.getText() === returnType
-      ) {
-        found = true;
-      }
-      ts.forEachChild(node, checkNode);
-    }
-
-    checkNode(sourceFile);
-
+    let found = checkNode(sourceFile);
     expect(
       found,
       `Function '${functionName}' must have an explicit return type annotation of '${returnType}'`

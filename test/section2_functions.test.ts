@@ -3,12 +3,12 @@ import * as ts from "typescript";
 import { readFileSync } from "fs";
 import { join } from "path";
 import vm from "vm";
+import { expectFunctionReturnTypeAnnotation } from "../explicit_type_annotation";
 
-describe("Section 2 – Functions", () => {
+describe("Section 2 - Functions", () => {
   let context: any = {};
-
+  const filePath = join(__dirname, "../src/section2_functions.ts");
   before(() => {
-    const filePath = join(__dirname, "../src/section2_functions.ts");
     const tsCode = readFileSync(filePath, "utf8");
 
     // Compile TypeScript to JavaScript
@@ -25,6 +25,16 @@ describe("Section 2 – Functions", () => {
     const result = context.double(4);
     expect(result).to.equal(8);
   });
+
+  it("should define a function 'double' that has a return value of number", () => {
+    const result = context.double(4);
+    expect(result).to.equal(8);
+    expect(result).to.be.a("number");
+  });
+
+  expectFunctionReturnTypeAnnotation(filePath, "double", "number");
+
+  it("should define double that has a number as its parameter", () => {});
   it("should define a function 'isEven' that returns true for even numbers", () => {
     expect(context).to.have.property("isEven");
     expect(context.isEven).to.be.a("function");
