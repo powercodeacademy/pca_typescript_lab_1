@@ -3,7 +3,11 @@ import * as ts from "typescript";
 import { readFileSync } from "fs";
 import { join } from "path";
 import vm from "vm";
-import { expectFunctionReturnTypeAnnotation } from "../explicit_type_annotation";
+import {
+  expectFunctionReturnTypeAnnotation,
+  expectFunctionParameterTypeAnnotation,
+  matchFunctionParameterTypeAnnotation,
+} from "../explicit_type_annotation";
 
 describe("Section 2 - Functions", () => {
   let context: any = {};
@@ -34,7 +38,8 @@ describe("Section 2 - Functions", () => {
 
   expectFunctionReturnTypeAnnotation(filePath, "double", "number");
 
-  it("should define double that has a number as its parameter", () => {});
+  matchFunctionParameterTypeAnnotation(filePath, "double", ["number"]);
+
   it("should define a function 'isEven' that returns true for even numbers", () => {
     expect(context).to.have.property("isEven");
     expect(context.isEven).to.be.a("function");
