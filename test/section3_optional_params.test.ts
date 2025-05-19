@@ -3,12 +3,16 @@ import * as ts from "typescript";
 import { readFileSync } from "fs";
 import { join } from "path";
 import vm from "vm";
+import {
+  expectFunctionReturnTypeAnnotation,
+  matchFunctionParameterTypeAnnotation,
+} from "../explicit_type_annotation";
 
-describe("Section 3 – Optional Parameters", () => {
+describe("Section 3 - Optional Parameters", () => {
   let context: any = {};
+  const filePath = join(__dirname, "../src/section3_optional_params.ts");
 
   before(() => {
-    const filePath = join(__dirname, "../src/section3_optional_params.ts");
     const tsCode = readFileSync(filePath, "utf8");
 
     // Compile TypeScript to JavaScript
@@ -25,8 +29,12 @@ describe("Section 3 – Optional Parameters", () => {
     expect(result).to.equal("Hello, Ada!");
   });
 
+  expectFunctionReturnTypeAnnotation(filePath, "greet", "string");
+
   it("should use the custom greeting when provided", () => {
     const result = context.greet("Grace", "Welcome");
     expect(result).to.equal("Welcome, Grace!");
   });
+
+  matchFunctionParameterTypeAnnotation(filePath, "greet", ["string", "string"]);
 });

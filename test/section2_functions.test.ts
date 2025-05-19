@@ -5,7 +5,6 @@ import { join } from "path";
 import vm from "vm";
 import {
   expectFunctionReturnTypeAnnotation,
-  expectFunctionParameterTypeAnnotation,
   matchFunctionParameterTypeAnnotation,
 } from "../explicit_type_annotation";
 

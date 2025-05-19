@@ -88,7 +88,7 @@ export function expectFunctionReturnTypeAnnotation(
 /**
  * This will allow students to name the variables whatever they want without requiring specific names for each variable.
  * Instead of testing a specific variable's type, it takes an array representing the types expected for the parameters
- * of the function.
+ * of the function in the order that they appear as parameters of the function.
  * @param testFilePath
  * @param functionName
  * @param parameterTypeArray in the format ['string', 'number', 'boolean']
@@ -99,7 +99,7 @@ export function matchFunctionParameterTypeAnnotation(
   functionName: string,
   expectedParameterTypeArray: string[]
 ) {
-  it(`should have parameters of with explicit type annotations of: ${expectedParameterTypeArray}`, () => {
+  it(`should have parameters with explicit type annotations of: ${expectedParameterTypeArray}`, () => {
     const tsCode = readFileSync(testFilePath, "utf8");
     const sourceFile = ts.createSourceFile(
       testFilePath,
@@ -145,7 +145,7 @@ export function matchFunctionParameterTypeAnnotation(
 
     expect(
       paramTypes,
-      `Expected parameter types [${expectedParameterTypeArray}] but got [${paramTypes}]. Ensure your parameters are typed correctly`
+      `Expected parameter types [${expectedParameterTypeArray}] but got [${paramTypes}]. Ensure your parameters are typed correctly or at all`
     ).to.have.members(expectedParameterTypeArray);
   });
 }
