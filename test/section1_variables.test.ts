@@ -3,7 +3,7 @@ import * as ts from "typescript";
 import { readFileSync } from "fs";
 import { join } from "path";
 import vm from "vm";
-import { expectVariableExplicitTypeAnnotation } from "../explicit_type_annotation";
+import { expectVariableExplicitTypeAnnotation } from "chai_typescript_type_annotation_tests";
 
 describe("Section 1 - Variables ", () => {
   let context: any = {};

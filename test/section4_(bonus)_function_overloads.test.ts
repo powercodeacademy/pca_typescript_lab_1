@@ -6,7 +6,7 @@ import vm from "vm";
 import {
   expectFunctionReturnTypeAnnotation,
   matchFunctionParameterTypeAnnotation,
-} from "../explicit_type_annotation";
+} from "chai_typescript_type_annotation_tests";
 
 describe("Section 4 (Bonus) - Function Overload-like Behavior", () => {
   let context: any = {};
