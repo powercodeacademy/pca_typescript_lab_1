@@ -10,3 +10,10 @@
 // HINT: Use a union type (string | number) and type narrowing with `typeof`
 
 // Your code here 👇
+const formatId = (id: string | number): string => {
+  if (typeof id === "string") {
+    return id.toUpperCase();
+  } else {
+    return id.toString().padStart(5, "0");
+  }
+};
