@@ -6,3 +6,15 @@
 // - returns true if the number is even, false otherwise
 
 // Your code here 👇
+
+function double(number: number): number {
+  return number * 2;
+}
+
+function isEven(number: number): boolean {
+  if (number % 2 === 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
