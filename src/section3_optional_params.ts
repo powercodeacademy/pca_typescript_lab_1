@@ -9,3 +9,11 @@
 // greet("Grace", "Welcome") ➞ "Welcome, Grace!"
 
 // Your code here 👇
+
+const greet = (name: string, greeting?: string): string => {
+  if (greeting) {
+    return `${greeting}, ${name}!`;
+  } else {
+    return `Hello, ${name}!`;
+  }
+};
