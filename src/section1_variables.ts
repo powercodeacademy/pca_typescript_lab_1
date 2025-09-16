@@ -8,3 +8,8 @@
 // BONUS: Try declaring a variable without an explicit type and see what type is inferred!
 
 // Your code here 👇
+const age: number = 5
+
+let firstName: string = 'hey'
+
+let isEnrolled: boolean = true
