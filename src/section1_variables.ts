@@ -8,3 +8,7 @@
 // BONUS: Try declaring a variable without an explicit type and see what type is inferred!
 
 // Your code here 👇
+
+let age: number = 1
+let firstName: string = "Stove"
+let isEnrolled: boolean = true
