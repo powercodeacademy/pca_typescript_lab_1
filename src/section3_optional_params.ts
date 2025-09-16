@@ -9,3 +9,6 @@
 // greet("Grace", "Welcome") ➞ "Welcome, Grace!"
 
 // Your code here 👇
+
+const greet = (name: string, greeting: string = "Hello"): string =>
+  `${greeting}, ${name}!`
