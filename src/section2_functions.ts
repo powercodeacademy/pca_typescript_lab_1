@@ -6,3 +6,6 @@
 // - returns true if the number is even, false otherwise
 
 // Your code here 👇
+const double = (num: number): number => num * 2
+
+const isEven = (num: number): boolean => num % 2 == 0
