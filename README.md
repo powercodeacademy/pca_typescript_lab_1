@@ -1,4 +1,8 @@
-# TypeScript Lab 1: Variables & Functions
+# TypeScript Lesson 1: Variables & Functions
+
+Welcome to your first TypeScript lab! If you're coming from JavaScript, you already know how to work with variables and functions. TypeScript builds on that knowledge by adding **type safety** — helping you catch errors before your code runs and making your intentions clear to other developers.
+
+Think of TypeScript types like labels on containers. In JavaScript, you might have a variable that could hold anything. In TypeScript, you can specify exactly what kind of data that variable should contain, and the compiler will help you stick to that plan.
 
 ## Learning Objectives
 
@@ -9,14 +13,6 @@ By the end of this lab, you will be able to:
 - Write functions with typed parameters and return values
 - Use optional parameters with default values
 - Apply union types and type narrowing (bonus)
-
----
-
-## Introduction
-
-Welcome to your first TypeScript lab! If you're coming from JavaScript, you already know how to work with variables and functions. TypeScript builds on that knowledge by adding **type safety** — helping you catch errors before your code runs and making your intentions clear to other developers.
-
-Think of TypeScript types like labels on containers. In JavaScript, you might have a variable that could hold anything. In TypeScript, you can specify exactly what kind of data that variable should contain, and the compiler will help you stick to that plan.
 
 ---
 
@@ -37,14 +33,6 @@ npm test
 ```
 
 You should see test output showing which tests are passing and failing. Don't worry if tests are failing initially - that's expected! You'll be implementing the code to make them pass.
-
-You can also check that TypeScript is working by running:
-
-```bash
-npx tsc --noEmit
-```
-
-This will check your TypeScript code for errors without generating output files.
 
 ---
 
@@ -72,15 +60,9 @@ npx mocha -r ts-node/register test/section3_optional_params.test.ts
 npx mocha -r ts-node/register test/section4_\(bonus\)_function_overloads.test.ts
 ```
 
-### Compile TypeScript (Check for Errors)
-
-```bash
-npx tsc --noEmit
-```
-
 ---
 
-## Section 1: Variable Type Annotations
+## Variable Type Annotations
 
 In JavaScript, you declare variables like this:
 
@@ -141,7 +123,7 @@ let inferredBoolean = true // TypeScript knows this is a boolean
 
 ---
 
-## Section 2: Function Type Annotations
+## Function Type Annotations
 
 Functions in TypeScript work just like JavaScript functions, but you can specify types for parameters and return values:
 
@@ -215,7 +197,7 @@ console.log(isEven(7)) // Should output: false
 
 ---
 
-## Section 3: Optional Parameters
+## Optional Parameters
 
 Sometimes you want a function parameter to be optional. In JavaScript, you might handle this with default values or by checking if a parameter exists. TypeScript gives you a clean way to mark parameters as optional using the `?` symbol:
 
@@ -302,7 +284,7 @@ function greet(name: string, greeting: string = "Hello"): string {
 
 ---
 
-## Section 4 (Bonus): Union Types & Type Narrowing
+## Bonus: Union Types & Type Narrowing
 
 Sometimes a function needs to handle multiple types of input. TypeScript's **union types** let you specify that a parameter can be one of several types using the `|` symbol:
 
@@ -376,44 +358,11 @@ formatId(7) // Returns: "00007"
 
 Now it's crystal clear: this function takes a number and returns a number. If someone tries to pass a string, TypeScript will warn them before the code even runs.
 
-## Tips for Success
-
-### Learning Strategies
-
-1. **Start simple**: Focus on getting the basic syntax right before worrying about complex logic
-2. **Read error messages**: TypeScript error messages are usually very helpful — they tell you exactly what's wrong
-3. **Use your IDE**: Hover over variables and functions to see their types
-4. **Experiment**: Try breaking things on purpose to see what errors you get
-
-### Common TypeScript Patterns
-
-- **Be explicit when learning**: Even though TypeScript can infer types, practice writing explicit annotations while you're learning
-- **Read the compiler**: If TypeScript complains, there's usually a good reason
-- **Think about data flow**: What types go in, what types come out?
-
-### Debugging TypeScript Errors
+### Common Troubleshooting
 
 - **"Type 'X' is not assignable to type 'Y'"**: You're trying to put the wrong type of data somewhere
 - **"Parameter 'X' implicitly has an 'any' type"**: You forgot to add a type annotation
 - **"Cannot find name 'X'"**: You might have a typo in a variable or function name
-
----
-
-## What's Next?
-
-After completing this lab, you'll have a solid foundation in:
-
-- ✅ TypeScript variable declarations with explicit types
-- ✅ Function parameter and return type annotations
-- ✅ Optional parameters and default values
-- ✅ Union types and type narrowing (bonus)
-
-In the next lab, you'll learn about:
-
-- Objects and interfaces
-- Arrays and tuples
-- Custom types and type aliases
-- Generic functions
 
 ---
 
