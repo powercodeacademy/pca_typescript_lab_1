@@ -185,15 +185,6 @@ function multiply(x: number, y: number): number {
    - Return type should be `boolean`
    - _Hint_: Use the modulo operator `%` to check if a number is even
 
-### Testing Your Functions
-
-You can test your functions by calling them:
-
-```typescript
-console.log(double(5)) // Should output: 10
-console.log(isEven(4)) // Should output: true
-console.log(isEven(7)) // Should output: false
-```
 
 ---
 
