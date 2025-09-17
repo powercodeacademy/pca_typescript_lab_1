@@ -20,9 +20,67 @@ Think of TypeScript types like labels on containers. In JavaScript, you might ha
 
 ---
 
-## Section 1: Variable Type Annotations
+## Getting Started
 
-### Concept Introduction
+First, clone this repository to your local machine and install the required dependencies:
+
+```bash
+npm install
+```
+
+### Verify Your Setup
+
+To make sure everything is working correctly, run the tests:
+
+```bash
+npm test
+```
+
+You should see test output showing which tests are passing and failing. Don't worry if tests are failing initially - that's expected! You'll be implementing the code to make them pass.
+
+You can also check that TypeScript is working by running:
+
+```bash
+npx tsc --noEmit
+```
+
+This will check your TypeScript code for errors without generating output files.
+
+---
+
+## Running Your Code
+
+### Run All Tests
+
+```bash
+npm test
+```
+
+### Run Tests for a Specific Section
+
+```bash
+# Section 1
+npx mocha -r ts-node/register test/section1_variables.test.ts
+
+# Section 2
+npx mocha -r ts-node/register test/section2_functions.test.ts
+
+# Section 3
+npx mocha -r ts-node/register test/section3_optional_params.test.ts
+
+# Section 4 (Bonus)
+npx mocha -r ts-node/register test/section4_\(bonus\)_function_overloads.test.ts
+```
+
+### Compile TypeScript (Check for Errors)
+
+```bash
+npx tsc --noEmit
+```
+
+---
+
+## Section 1: Variable Type Annotations
 
 In JavaScript, you declare variables like this:
 
@@ -48,9 +106,7 @@ The `: type` syntax is called a **type annotation**. It tells TypeScript (and ot
 2. **Better IDE support**: Your editor can provide better autocomplete and suggestions
 3. **Self-documenting code**: Other developers can see what data types your code expects
 
-### Guided Examples
-
-Here are some examples of explicit type annotations:
+### Examples
 
 ```typescript
 // Explicit type annotations
@@ -87,8 +143,6 @@ let inferredBoolean = true // TypeScript knows this is a boolean
 
 ## Section 2: Function Type Annotations
 
-### Concept Introduction
-
 Functions in TypeScript work just like JavaScript functions, but you can specify types for parameters and return values:
 
 ```typescript
@@ -114,7 +168,7 @@ The syntax is:
 2. **Clear contracts**: Other developers know exactly what your function expects and returns
 3. **Better tooling**: IDEs can catch errors and provide better autocomplete
 
-### Guided Examples
+### Examples
 
 ```typescript
 // Function that takes a string and returns a string
@@ -163,8 +217,6 @@ console.log(isEven(7)) // Should output: false
 
 ## Section 3: Optional Parameters
 
-### Concept Introduction
-
 Sometimes you want a function parameter to be optional. In JavaScript, you might handle this with default values or by checking if a parameter exists. TypeScript gives you a clean way to mark parameters as optional using the `?` symbol:
 
 ```typescript
@@ -186,7 +238,7 @@ function greet(name: string, greeting: string = "Hello"): string {
 }
 ```
 
-### Guided Examples
+### Examples
 
 ```typescript
 // Optional parameter
@@ -252,8 +304,6 @@ function greet(name: string, greeting: string = "Hello"): string {
 
 ## Section 4 (Bonus): Union Types & Type Narrowing
 
-### Concept Introduction
-
 Sometimes a function needs to handle multiple types of input. TypeScript's **union types** let you specify that a parameter can be one of several types using the `|` symbol:
 
 ```typescript
@@ -276,7 +326,7 @@ function processId(id: string | number): string {
 }
 ```
 
-### Guided Examples
+### Examples
 
 ```typescript
 // Union type parameter
@@ -324,44 +374,6 @@ formatId(7) // Returns: "00007"
 - Use `typeof id === "number"` to check if it's a number
 - For padding numbers with zeros, you can use: `id.toString().padStart(5, "0")`
 
----
-
-## Running Your Code
-
-### Install Dependencies
-
-```bash
-npm install
-```
-
-### Run All Tests
-
-```bash
-npm test
-```
-
-### Run Tests for a Specific Section
-
-```bash
-# Section 1
-npx mocha -r ts-node/register test/section1_variables.test.ts
-
-# Section 2
-npx mocha -r ts-node/register test/section2_functions.test.ts
-
-# Section 3
-npx mocha -r ts-node/register test/section3_optional_params.test.ts
-
-# Section 4 (Bonus)
-npx mocha -r ts-node/register test/section4_\(bonus\)_function_overloads.test.ts
-```
-
-### Compile TypeScript (Check for Errors)
-
-```bash
-npx tsc --noEmit
-```
-
 Now it's crystal clear: this function takes a number and returns a number. If someone tries to pass a string, TypeScript will warn them before the code even runs.
 
 ## Tips for Success
@@ -405,4 +417,4 @@ In the next lab, you'll learn about:
 
 ---
 
-**Ready to start?** Open `src/section1_variables.ts` and begin with Section 1! 🚀
+**Ready to start?** Follow the setup instructions in the "Getting Started" section above, then open `src/section1_variables.ts` and begin with Section 1! 🚀
