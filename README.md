@@ -363,7 +363,3 @@ Now it's crystal clear: this function takes a number and returns a number. If so
 - **"Type 'X' is not assignable to type 'Y'"**: You're trying to put the wrong type of data somewhere
 - **"Parameter 'X' implicitly has an 'any' type"**: You forgot to add a type annotation
 - **"Cannot find name 'X'"**: You might have a typo in a variable or function name
-
----
-
-**Ready to start?** Follow the setup instructions in the "Getting Started" section above, then open `src/section1_variables.ts` and begin with Section 1! 🚀
