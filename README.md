@@ -1,111 +1,158 @@
-# Lab 1 — Variables & Functions (TypeScript)
+# TypeScript Lab: Variables & Functions
 
-Welcome to Lab 1 of the TypeScript Labs!
-This lab focuses on mastering how to use typed variables and typed functions in TypeScript — building directly on your existing JavaScript knowledge.
+Welcome to your first TypeScript lab! If you're coming from JavaScript, you're going to love what TypeScript brings to the table. Think of TypeScript as JavaScript with superpowers — it gives you all the flexibility you're used to, plus the safety net of type checking.
 
-## 🏆 Learning Goals
+## Why TypeScript?
 
-By completing this lab, you will be able to:
-- Declare variables with explicit types
-- Understand how type inference works in TypeScript
-- Write functions with typed parameters and return values
-- Use optional parameters and default values in functions
-- (Bonus) Use union types and type narrowing in functions
+You've been writing JavaScript for a while now, and you know how easy it is to accidentally pass a string where you meant to pass a number, or call a method that doesn't exist. TypeScript catches these mistakes _before_ your code runs, saving you from those frustrating runtime errors.
 
-## 🛠️ What to Do
+The best part? TypeScript is just JavaScript with type annotations. Everything you know about JavaScript still applies — we're just adding some helpful guardrails.
 
-### Section 1: Variables
+## Variables with Types
 
-**Task 1:** Declare 3 variables with explicit types:
+In JavaScript, you might write:
 
-- a number called `age`
-- a string called `firstName`
-- a boolean called `isEnrolled`
-
-Then, assign values to each of them.
-
-**BONUS:** Try declaring a variable without an explicit type and see what type is inferred!
-
-### Section 2: Functions
-
-**TASK 1:** Write a function named `double` that:
-
-- takes a number and returns the number \* 2
-
-**TASK 2:** Write a function named `isEven` that:
-
-- takes a number and returns a boolean
-- returns true if the number is even, false otherwise
-
-### Section 3: Optional Parameters
-
-**TASK 1**: Write a function named `greet` that:
-
-- takes one required parameter: `name` (string)
-- takes one optional parameter: `greeting` (string)
-- returns: "<greeting>, <name>!" if greeting is provided
-- if not provided, use "Hello" as the default greeting
-
-_Example_:
-`greet("Ada") ➞ "Hello, Ada!"`
-`greet("Grace", "Welcome") ➞ "Welcome, Grace!"`
-
-### Section 4 (Bonus): Function Overloads
-
-**BONUS TASK**: Write a function called `formatId` that:
-- takes a parameter `id` that can be a string OR a number
-- if it's a string, return it in uppercase
-- if it's a number, return it as a string with leading zeros such that string is 5 characters (e.g. 42 → \"00042\")
-
-*Example*:
-`formatId(\"abc\") ➞ \"ABC\"`
-`formatId(42) ➞ \"00042\"`
-
-HINT: Use a union type (string | number) and type narrowing with `typeof`
-
-## 🗂️ Lab Structure
-
-```zsh
-src/
-├── section1_variables.ts
-├── section2_functions.ts
-├── section3_optional_params.ts
-└── bonus_function_overloads.ts
-
-test/
-├── section1_variables.test.ts
-├── section2_functions.test.ts
-├── section3_optional_params.test.ts
-└── bonus_function_overloads.test.ts
+```javascript
+let age = 25
+let name = "Ada"
+let isStudent = true
 ```
 
-✅ How to Run Tests
+TypeScript lets you be explicit about what types these variables should hold:
 
-1. Install dependencies:
-
-```bash
-npm install
+```typescript
+let age: number = 25
+let name: string = "Ada"
+let isStudent: boolean = true
 ```
 
-2. Run all tests:
+Why is this helpful? Well, if you accidentally try to do something like `age = "twenty-five"` later in your code, TypeScript will catch that mistake immediately and tell you "Hey, you said `age` was supposed to be a number!"
 
-```zsh
-npm test
+### Type Inference: TypeScript's Smart Guessing
+
+Here's something cool — TypeScript is smart enough to figure out types even when you don't explicitly write them:
+
+```typescript
+let score = 100 // TypeScript knows this is a number
+let message = "Hello!" // TypeScript knows this is a string
 ```
 
-3. Run tests for a specific section:
+Try hovering over these variables in your editor — you'll see TypeScript has inferred their types automatically. This is called **type inference**, and it's one of TypeScript's most convenient features.
 
-```zsh
-npx mocha -r ts-node/register test/section1_variables.test.ts
+## Functions with Types
+
+JavaScript functions work great, but they don't tell you much about what they expect or what they return:
+
+```javascript
+function double(x) {
+  return x * 2
+}
 ```
 
-## ✨ Tips
+What if someone passes a string to this function? You'd get `"55"` instead of `10` if they passed `"5"`. TypeScript helps us be clear about our intentions:
 
-- Don’t worry if you make mistakes — the compiler and tests will guide you!
-- Try assigning wrong types on purpose to see what errors you get (it’s a great learning tool!)
-- If you’re stuck, compare what you’re writing to similar JavaScript patterns you already know.
-- Tackle the Bonus section if you’re feeling confident or curious.
+```typescript
+function double(x: number): number {
+  return x * 2
+}
+```
 
----
+Now it's crystal clear: this function takes a number and returns a number. If someone tries to pass a string, TypeScript will warn them before the code even runs.
 
-**Ready?** Open src/section1_variables.ts and get started! 🚀
+### Optional Parameters: Flexibility When You Need It
+
+Sometimes you want function parameters to be optional. In JavaScript, you might handle this with default values or checking if parameters exist. TypeScript gives you a clean way to express this:
+
+```typescript
+function greet(name: string, greeting?: string): string {
+  if (greeting) {
+    return `${greeting}, ${name}!`
+  }
+  return `Hello, ${name}!`
+}
+```
+
+The `?` after `greeting` means it's optional. You can call this function with just a name, or with both a name and a custom greeting.
+
+You can also provide default values, which automatically makes parameters optional:
+
+```typescript
+function greet(name: string, greeting: string = "Hello"): string {
+  return `${greeting}, ${name}!`
+}
+```
+
+### Union Types: When You Need Flexibility
+
+Sometimes a function should accept multiple types. Maybe you have an ID that could be either a string or a number. TypeScript's union types let you express this:
+
+```typescript
+function formatId(id: string | number): string {
+  if (typeof id === "string") {
+    return id.toUpperCase()
+  } else {
+    return id.toString().padStart(5, "0")
+  }
+}
+```
+
+The `|` means "or" — so `id` can be either a string or a number. Inside the function, we use `typeof` to check which type we actually received and handle each case appropriately. This is called **type narrowing**.
+
+## Your Turn to Practice
+
+Now that you understand the concepts, it's time to put them into practice. You'll be working in the `src/` folder, where you'll find skeleton files for each section:
+
+- `section1_variables.ts` - Practice declaring typed variables
+- `section2_functions.ts` - Write functions with typed parameters and return values
+- `section3_optional_params.ts` - Work with optional parameters and defaults
+- `section4_(bonus)_function_overloads.ts` - Challenge yourself with union types
+
+Each file has minimal instructions — just enough to guide you, but you'll be doing the heavy lifting. This is where you apply what you've learned and build your TypeScript muscle memory.
+
+## Running Your Code
+
+To see if your code works and follows TypeScript best practices:
+
+1. **Install dependencies** (first time only):
+
+   ```bash
+   npm install
+   ```
+
+2. **Run all tests**:
+
+   ```bash
+   npm test
+   ```
+
+3. **Run tests for a specific section**:
+   ```bash
+   npx mocha -r ts-node/register test/section1_variables.test.ts
+   ```
+
+The tests will check both that your code works correctly _and_ that you're using proper TypeScript type annotations. Don't worry if you see some failures at first — that's normal! The error messages will guide you toward the solution.
+
+## Troubleshooting Common Issues
+
+**"Cannot find name 'X'"** - You might have a typo in a variable or function name, or you forgot to declare it.
+
+**"Type 'string' is not assignable to type 'number'"** - You're trying to assign the wrong type to a variable. Double-check your type annotations and the values you're assigning.
+
+**"Expected 2 arguments, but got 1"** - You're calling a function with the wrong number of arguments. Check if some parameters should be optional (marked with `?`).
+
+**"Property 'X' does not exist on type 'Y'"** - You're trying to use a method or property that doesn't exist on that type. This often happens when working with union types — you might need to use type narrowing.
+
+## Tips for Success
+
+- **Start simple**: Get the basic functionality working first, then worry about perfect type annotations.
+- **Use your editor**: Hover over variables and functions to see what types TypeScript has inferred.
+- **Read the error messages**: TypeScript's error messages are usually very helpful and will point you in the right direction.
+- **Experiment**: Try passing the wrong types on purpose to see what errors you get — it's a great way to understand how TypeScript works.
+
+## Ready to Start?
+
+Open up `src/section1_variables.ts` and start with the variable declarations. Remember, you're not just learning new syntax — you're building habits that will make your JavaScript code more reliable and easier to debug.
+
+The tests are there to guide you, but don't just make them pass — make sure you understand _why_ your solution works. That understanding will serve you well as you continue your TypeScript journey.
+
+Happy coding! 🚀

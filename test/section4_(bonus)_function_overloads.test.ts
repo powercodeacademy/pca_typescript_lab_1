@@ -1,55 +1,67 @@
-import { expect } from "chai";
-import * as ts from "typescript";
-import { readFileSync } from "fs";
-import { join } from "path";
-import vm from "vm";
+import { expect } from "chai"
+import * as ts from "typescript"
+import { readFileSync } from "fs"
+import { join } from "path"
+import vm from "vm"
 import {
   expectFunctionReturnTypeAnnotation,
   matchFunctionParameterTypeAnnotation,
-} from "chai_typescript_type_annotation_tests";
+} from "chai_typescript_type_annotation_tests"
 
-describe("Section 4 (Bonus) - Function Overload-like Behavior", () => {
-  let context: any = {};
+describe("Section 4 (Bonus) - Union Types & Type Narrowing", () => {
+  let context: any = {}
   const filePath = join(
     __dirname,
     "../src/section4_(bonus)_function_overloads.ts"
-  );
+  )
 
   before(() => {
-    const tsCode = readFileSync(filePath, "utf8");
+    const tsCode = readFileSync(filePath, "utf8")
 
     // Compile TypeScript to JavaScript
-    const jsCode = ts.transpile(tsCode);
+    const jsCode = ts.transpile(tsCode)
 
     // Run in a sandbox
-    vm.createContext(context);
-    vm.runInContext(jsCode, context);
-  });
-  it("should return uppercase string when input is a string", () => {
-    expect(context).to.have.property("formatId");
-    expect(context.formatId).to.be.a("function");
-    const result = context.formatId("abc");
-    expect(result).to.equal("ABC");
-  });
+    vm.createContext(context)
+    vm.runInContext(jsCode, context)
+  })
 
-  it("should return a string with leading zeros when input is a number 42", () => {
-    const result = context.formatId(42);
-    expect(result).to.equal("00042");
-  });
+  // Example: Union types and type narrowing look like this:
+  // function process(input: string | number): string {
+  //   if (typeof input === "string") {
+  //     return input.toUpperCase();  // TypeScript knows it's a string here
+  //   } else {
+  //     return input.toString();     // TypeScript knows it's a number here
+  //   }
+  // }
 
-  it("should return a string with leading zeros when input is a number 12345", () => {
-    const result = context.formatId(12345);
-    expect(result).to.equal("12345");
-  });
+  describe("formatId function", () => {
+    it("should return uppercase string when input is a string", () => {
+      expect(context).to.have.property("formatId")
+      expect(context.formatId).to.be.a("function")
+      const result = context.formatId("abc")
+      expect(result).to.equal("ABC")
+    })
 
-  it("should return a string with leading zeros when input is a number 923", () => {
-    const result = context.formatId(923);
-    expect(result).to.equal("00923");
-  });
+    it("should return padded string when input is a small number", () => {
+      const result = context.formatId(42)
+      expect(result).to.equal("00042")
+    })
 
-  expectFunctionReturnTypeAnnotation(filePath, "formatId", "string");
+    it("should handle larger numbers correctly", () => {
+      const result = context.formatId(12345)
+      expect(result).to.equal("12345")
+    })
 
-  matchFunctionParameterTypeAnnotation(filePath, "formatId", [
-    "string | number",
-  ]);
-});
+    it("should pad three-digit numbers", () => {
+      const result = context.formatId(923)
+      expect(result).to.equal("00923")
+    })
+
+    // These tests ensure proper TypeScript union type usage
+    expectFunctionReturnTypeAnnotation(filePath, "formatId", "string")
+    matchFunctionParameterTypeAnnotation(filePath, "formatId", [
+      "string | number",
+    ])
+  })
+})
